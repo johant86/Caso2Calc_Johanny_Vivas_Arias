@@ -1,0 +1,204 @@
+﻿@using Caso2Calc_Johanny_Vivas_Arias
+@model Calculator
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Calculadora simple</title>
+    <style type="text/css">
+        #form {
+            height: 400px;
+            width: 460px;
+            margin: 20px auto;
+            background-color: #f2f2f2;
+        }
+
+        .title {
+            width: 460px;
+            font-size: 20px;
+            margin: 20px auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .panel {
+            width: 460px;
+            text-align: center;
+        }
+
+        .panel_txt {
+            height: 45px;
+            width: 335px;
+            text-align: right;
+            font-size: 20px;
+            padding: 0px 10px;
+        }
+
+        .container {
+            width: 350px;
+            display: flex;
+            flex-direction: row;
+            margin: 20px auto;
+        }
+
+        .number_area {
+            width: 300px;
+        }
+
+        .btn_normal {
+            width: 50px;
+            height: 40px;
+            margin: 10px 5px;
+            font-size: 20px;
+        }
+
+        .zero {
+            width: 113px;
+        }
+
+        .long {
+            height: 100px;
+        }
+
+        .symbol_area, .equal_area {
+            width: 70px;
+        }
+
+        .btn_mod {
+            width: 50px;
+            height: 40px;
+            margin: 10px 5px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title"><asp:Label ID="Label" runat="server" Text="Calculadora simple"></asp:Label></div>
+    <div class="panel">
+        <input id="result" value="@Model.result" class="panel_txt" type="text" readonly>
+    </div>
+    <div class="container">
+        <div class="number_area">
+            <button id="Btn_mc" onclick="AddNumer(9)" class="btn_normal" formaction="Add" type="submit">MC</button>
+            <button id="Btn_mr" onclick="AddNumer(8)" class="btn_normal" value="eee" type="button">MR</button>
+            <button id="Btn_ms" onclick="AddNumer(7)" class="btn_normal" value="eee" type="button">MS</button>
+            <button id="Btn_ce" onclick="ResetNumber()" class="btn_normal" value="eee" type="button">CE</button>
+            <button id="Btn_c" onclick="Delete()" class="btn_normal" value="eee" type="button">C</button>
+
+
+            <button id="Btn_9" onclick="AddNumer(9)" class="btn_normal" formaction="Add" type="submit">9</button>
+            <button id="Btn_8" onclick="AddNumer(8)" class="btn_normal" value="eee" type="button">8</button>
+            <button id="Btn_7" onclick="AddNumer(7)" class="btn_normal" value="eee" type="button">7</button>
+            <button id="Btn_6" onclick="AddNumer(6)" class="btn_normal" value="eee" type="button">6</button>
+            <button id="Btn_5" onclick="AddNumer(5)" class="btn_normal" value="eee" type="button">5</button>
+            <button onclick="AddNumer(4)" class="btn_normal" type="button">4</button>
+            <button onclick="AddNumer(3)" class="btn_normal" type="button">3</button>
+            <button onclick="AddNumer(2)" class="btn_normal" type="button">2</button>
+            <button onclick="AddNumer(1)" class="btn_normal" type="button">1</button>
+            <button onclick="AddNumer(0)" class="btn_normal" type="button">0</button>
+            <button class="btn_normal zero" onclick="AddNumer(',')"  type="button">,</button>
+
+
+        </div>
+        <div class="symbol_area">
+            <button id="Btn_m+" onclick="AddNumer(9)" class="btn_normal" formaction="Add" type="submit">M+</button>
+            <button id="Btn_divide" onclick="SetOperator('/')" class="btn_normal" type="button">/</button>
+            <button id="Btn_multy"  onclick="SetOperator('*')" class="btn_normal" type="button">*</button>
+            <button id="Btn_minus"  onclick="SetOperator('-')" class="btn_normal" type="button">-</button>
+            <button id="Btn_add"    onclick="SetOperator('+')" class="btn_normal" type="button">+</button>
+        </div>
+        <div class="equal_area">
+            <button id="Btn_m-" class="btn_normal" value="eee" type="button">M-</button>
+            <button id="Btn_clear" class="btn_normal" value="eee" type="button">←</button>
+            <button id="Btn_mod" class="btn_mod" type="button">MOD</button>
+            <button id="Btn_equal" onclick="GetResult()" class="btn_normal long" type="button">=</button>
+        </div>
+    </div>
+
+    <script>
+        function AddNumer(number) {
+
+            $.ajax(
+                {
+                    url: '@Url.Action("AddNumer", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: { num: number },
+                    success: function (data) {
+                        document.getElementById("result").value = data.result;
+                        console.log('test', data)
+                    }
+                });
+        }
+
+           function SetOperator(operator) {
+            $.ajax(
+                {
+                    url: '@Url.Action("SetOpetor", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: { _operator : operator },
+                    success: function (data) {
+                     document.getElementById("result").value = data.result;
+                    console.log('test2', data)
+                    }
+                });
+        }
+
+
+         function GetResult() {
+            $.ajax(
+                {
+                    url: '@Url.Action("GetResult", "Home")',
+                    type: 'GET',
+                    dataType: 'json',
+                    cache: false,
+                  /*  data: { _operator : operator },*/
+                    success: function (data) {
+                        document.getElementById("result").value = data.result;
+                        console.log('test3', data)
+                    }
+                });
+    }
+
+     function Delete() {
+            $.ajax(
+                {
+                    url: '@Url.Action("ResetCalculadora", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById("result").value = 0;
+                        console.log('test4', data)
+                    }
+                });
+        }
+
+             function ResetNumber() {
+            $.ajax(
+                {
+                    url: '@Url.Action("ResetNumber", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById("result").value = 0;
+                        console.log('test5', data)
+                    }
+                });
+        }
+
+    </script>
+</body>
+</html>
