@@ -35,7 +35,7 @@ namespace Caso2Calc_Johanny_Vivas_Arias.Controllers
             try
             {
                 calculator = _logic.GetCalculator();
-                if(calculator.Operator != null)
+                if (calculator.Operator != null)
                 {
 
                     if (_logic.AddNumberTwo(num))
@@ -50,7 +50,7 @@ namespace Caso2Calc_Johanny_Vivas_Arias.Controllers
                 View();
                 return calculator;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 ViewBag.Result = ex.Message;
             }

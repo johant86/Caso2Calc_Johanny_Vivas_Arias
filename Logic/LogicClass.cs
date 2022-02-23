@@ -47,17 +47,14 @@ namespace Caso2Calc_Johanny_Vivas_Arias
         {
             try
             {
-                calculator.NumberOne = "";
+
                 string numb = calculator.NumberOne;
                 numb += number;
 
 
 
                 calculator.NumberOne = numb;
-                //calculator.McNumberOne = numb;
                 calculator.result = calculator.NumberOne;
-
-
             }
             catch (Exception ex)
             {
@@ -72,12 +69,11 @@ namespace Caso2Calc_Johanny_Vivas_Arias
         {
             try
             {
-                calculator.NumberTwo = "";
+
                 string numb = calculator.NumberTwo;
                 numb += number;
 
                 calculator.NumberTwo = numb;
-                //calculator.McNumberTwo = numb;
                 calculator.result = calculator.NumberTwo;
             }
             catch (Exception ex)
@@ -158,11 +154,13 @@ namespace Caso2Calc_Johanny_Vivas_Arias
             {
                 if (calculator.Operator != null)
                 {
-                    calculator.NumberTwo = "0";
+                    calculator.NumberTwo = "";
+                    calculator.result = "0";
                     return true;
                 }
                 else
-                    calculator.NumberOne = "0";
+                    calculator.NumberOne = "";
+                calculator.result = "0";
                 return true;
             }
             catch (Exception ex)
