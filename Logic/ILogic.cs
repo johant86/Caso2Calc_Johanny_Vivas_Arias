@@ -11,5 +11,12 @@ namespace Caso2Calc_Johanny_Vivas_Arias.Logic
         bool ResetCalculadora();
         bool GetResult();
         bool ResetNumber();
+
+        bool ShowMcNumber();
+
+        bool AddMcNumber();
+        bool ResetMcNumber();
+        bool McSumNumber();
+        bool McResNumber();
     }
 }

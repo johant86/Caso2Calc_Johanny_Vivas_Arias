@@ -9,6 +9,8 @@ namespace Caso2Calc_Johanny_Vivas_Arias.Models
     {
         public string NumberOne { set; get; }
         public string NumberTwo { set; get; }
+        public string McNumberOne { set; get; }
+        public string McNumberTwo { set; get; }
         public string Operator { set; get; }
         public string result { set; get; }
 
@@ -17,6 +19,8 @@ namespace Caso2Calc_Johanny_Vivas_Arias.Models
             result = "0";
             NumberOne = "";
             NumberTwo = "";
+            McNumberOne = "";
+            McNumberTwo = "";
         }
     }
 }

@@ -126,8 +126,76 @@ namespace Caso2Calc_Johanny_Vivas_Arias.Controllers
         }
 
 
+        [HttpPost]
+        public dynamic AddMcNumber()
+        {
+            try
+            {
+                if (_logic.AddMcNumber())
+                    calculator = _logic.GetCalculator();
 
-        
+                return calculator;
+            }
+            catch (Exception)
+            {
+                ViewBag.Result = "Wrong Input Provided.";
+            }
+            return View("CalPage");
+        }
+
+        [HttpPost]
+        public dynamic ShowMcNumber()
+        {
+            try
+            {
+                if (_logic.ShowMcNumber())
+                    calculator = _logic.GetCalculator();
+
+                return calculator;
+            }
+            catch (Exception)
+            {
+                ViewBag.Result = "Wrong Input Provided.";
+            }
+            return View("CalPage");
+        }
+
+        [HttpPost]
+        public dynamic McSumNumber()
+        {
+            try
+            {
+                if (_logic.McSumNumber())
+                    calculator = _logic.GetCalculator();
+
+                return calculator;
+            }
+            catch (Exception)
+            {
+                ViewBag.Result = "Wrong Input Provided.";
+            }
+            return View("CalPage");
+        }
+
+        [HttpPost]
+        public dynamic McResNumber()
+        {
+            try
+            {
+                if (_logic.McResNumber())
+                    calculator = _logic.GetCalculator();
+
+                return calculator;
+            }
+            catch (Exception)
+            {
+                ViewBag.Result = "Wrong Input Provided.";
+            }
+            return View("CalPage");
+        }
+
+
+
 
     }
 }

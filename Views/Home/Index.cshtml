@@ -87,18 +87,18 @@
     </div>
     <div class="container">
         <div class="number_area">
-            <button id="Btn_mc" onclick="AddNumer(9)" class="btn_normal" formaction="Add" type="submit">MC</button>
-            <button id="Btn_mr" onclick="AddNumer(8)" class="btn_normal" value="eee" type="button">MR</button>
-            <button id="Btn_ms" onclick="AddNumer(7)" class="btn_normal" value="eee" type="button">MS</button>
-            <button id="Btn_ce" onclick="ResetNumber()" class="btn_normal" value="eee" type="button">CE</button>
+            <button id="Btn_mc" onclick="ResetMcNumber()" class="btn_normal"   type="submit">MC</button>
+            <button id="Btn_mr" onclick="ShowMcNumber()" class="btn_normal"  type="button">MR</button>
+            <button id="Btn_ms" onclick="AddMcNumber()" class="btn_normal"   type="button">MS</button>
+            <button id="Btn_ce" onclick="ResetNumber()" class="btn_normal"   type="button">CE</button>
             <button id="Btn_c" onclick="Delete()" class="btn_normal" value="eee" type="button">C</button>
 
 
             <button id="Btn_9" onclick="AddNumer(9)" class="btn_normal" formaction="Add" type="submit">9</button>
-            <button id="Btn_8" onclick="AddNumer(8)" class="btn_normal" value="eee" type="button">8</button>
-            <button id="Btn_7" onclick="AddNumer(7)" class="btn_normal" value="eee" type="button">7</button>
-            <button id="Btn_6" onclick="AddNumer(6)" class="btn_normal" value="eee" type="button">6</button>
-            <button id="Btn_5" onclick="AddNumer(5)" class="btn_normal" value="eee" type="button">5</button>
+            <button id="Btn_8" onclick="AddNumer(8)" class="btn_normal"  type="button">8</button>
+            <button id="Btn_7" onclick="AddNumer(7)" class="btn_normal"  type="button">7</button>
+            <button id="Btn_6" onclick="AddNumer(6)" class="btn_normal"  type="button">6</button>
+            <button id="Btn_5" onclick="AddNumer(5)" class="btn_normal"  type="button">5</button>
             <button onclick="AddNumer(4)" class="btn_normal" type="button">4</button>
             <button onclick="AddNumer(3)" class="btn_normal" type="button">3</button>
             <button onclick="AddNumer(2)" class="btn_normal" type="button">2</button>
@@ -109,16 +109,16 @@
 
         </div>
         <div class="symbol_area">
-            <button id="Btn_m+" onclick="AddNumer(9)" class="btn_normal" formaction="Add" type="submit">M+</button>
+            <button id="Btn_m+" onclick="SumMcNumber()" class="btn_normal" formaction="Add" type="submit">M+</button>
             <button id="Btn_divide" onclick="SetOperator('/')" class="btn_normal" type="button">/</button>
             <button id="Btn_multy"  onclick="SetOperator('*')" class="btn_normal" type="button">*</button>
             <button id="Btn_minus"  onclick="SetOperator('-')" class="btn_normal" type="button">-</button>
             <button id="Btn_add"    onclick="SetOperator('+')" class="btn_normal" type="button">+</button>
         </div>
         <div class="equal_area">
-            <button id="Btn_m-" class="btn_normal" value="eee" type="button">M-</button>
-            <button id="Btn_clear" class="btn_normal" value="eee" type="button">←</button>
-            <button id="Btn_mod" class="btn_mod" type="button">MOD</button>
+            <button id="Btn_m-" onclick="RestMcNumber()"  class="btn_normal" type="button">M-</button>
+            <button id="Btn_clear" class="btn_normal" type="button">←</button>
+            <button id="Btn_mod"  onclick="SetOperator('%')" class="btn_mod" type="button">MOD</button>
             <button id="Btn_equal" onclick="GetResult()" class="btn_normal long" type="button">=</button>
         </div>
     </div>
@@ -194,6 +194,64 @@
                     cache: false,
                     success: function (data) {
                         document.getElementById("result").value = 0;
+                        console.log('test5', data)
+                    }
+                });
+        }
+
+
+        function AddMcNumber() {
+            $.ajax(
+                {
+                    url: '@Url.Action("AddMcNumber", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById("result").value = data.result;
+                        console.log('test5', data)
+                    }
+                });
+        }
+
+        function ShowMcNumber() {
+            $.ajax(
+                {
+                    url: '@Url.Action("ShowMcNumber", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById("result").value = data.result;
+                        console.log('test5', data)
+                    }
+                });
+        }
+
+
+          function SumMcNumber() {
+            $.ajax(
+                {
+                    url: '@Url.Action("McSumNumber", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById("result").value = data.result;
+                        console.log('test5', data)
+                    }
+                });
+        }
+
+          function RestMcNumber() {
+            $.ajax(
+                {
+                    url: '@Url.Action("McResNumber", "Home")',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        document.getElementById("result").value = data.result;
                         console.log('test5', data)
                     }
                 });
